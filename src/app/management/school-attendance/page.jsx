@@ -10,10 +10,13 @@ import ReusableTable from '@/app/components/shared/ReusableTable';
 export default function AttendancePage() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(false);
+  // const [selectedDate, setSelectedDate] = useState(() => {
+  //   const yesterday = new Date();
+  //   yesterday.setDate(yesterday.getDate() - 1);
+  //   return yesterday;
+  // });
   const [selectedDate, setSelectedDate] = useState(() => {
-    const yesterday = new Date();
-    yesterday.setDate(yesterday.getDate() - 1);
-    return yesterday;
+    return new Date('2025-05-14');
   });
 
   const fetchAttendance = async (date) => {
@@ -46,10 +49,10 @@ export default function AttendancePage() {
     }
   };
 
-  const handleChange = (date) =>{
-     console.log('date',date);
-     sessionStorage.setItem('initialDate', date);
-     setSelectedDate(date);
+  const handleChange = (date) => {
+    console.log('date', date);
+    sessionStorage.setItem('initialDate', date);
+    setSelectedDate(date);
   }
   const tableHeaders = [
     { label: 'School Name', key: 'name' },
@@ -71,7 +74,7 @@ export default function AttendancePage() {
           <DatePicker
             selected={selectedDate}
             // onChange={(date) => setSelectedDate(date)}
-            onChange={(date) => handleChange(date) }
+            onChange={(date) => handleChange(date)}
             dateFormat="dd/MM/yyyy"
             className="w-30 px-4 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500 z-20"
             popperPlacement="bottom-end"
@@ -129,47 +132,47 @@ export default function AttendancePage() {
         //   </table>
         // </div>
 
-<ReusableTable
-title="Program Attendance Summary"
-headers={tableHeaders}
-data={attendanceData}
-height="340px"
->
-<thead className="text-sm font-medium bg-[#EFEFF4] sticky top-[-1px] z-10">
-  <tr className="text-left">
-    {tableHeaders.map((header, i) => (
-      <th key={i} className="border border-gray-100 px-4 py-2">{header.label}</th>
-    ))}
-  </tr>
-</thead>
-<tbody className="text-sm">
-  {attendanceData.map((program, index) => {
-    const attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
-    return (
-      <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
-        <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>
-        <td className="border border-gray-100 px-4 py-2 text-center">{program.total_actual}</td>
-        <td className="border border-gray-100 px-4 py-3 text-center">
-          <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium">{program.total_present}</span>
-        </td>
-        <td className="border border-gray-100 px-4 py-3 text-center">
-          <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full font-medium">{program.total_absent}</span>
-        </td>
-        <td className="border border-gray-100 px-4 py-3 text-center">
-          <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
-        </td>
-        <td className="border border-gray-100 px-4 py-2 font-bold text-center">
-          <Link href={`/management/school-attendance/${encodeURIComponent(program.name.replace(/\s+/g, "-"))}`}>
-            <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
-              View
-            </button>
-          </Link>
-        </td>
-      </tr>
-    );
-  })}
-</tbody>
-</ReusableTable>
+        <ReusableTable
+          title="Program Attendance Summary"
+          headers={tableHeaders}
+          data={attendanceData}
+          height="340px"
+        >
+          <thead className="text-sm font-medium bg-[#EFEFF4] sticky top-[-1px] z-10">
+            <tr className="text-left">
+              {tableHeaders.map((header, i) => (
+                <th key={i} className="border border-gray-100 px-4 py-2">{header.label}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody className="text-sm">
+            {attendanceData.map((program, index) => {
+              const attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
+              return (
+                <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
+                  <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>
+                  <td className="border border-gray-100 px-4 py-2 text-center">{program.total_actual}</td>
+                  <td className="border border-gray-100 px-4 py-3 text-center">
+                    <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium">{program.total_present}</span>
+                  </td>
+                  <td className="border border-gray-100 px-4 py-3 text-center">
+                    <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full font-medium">{program.total_absent}</span>
+                  </td>
+                  <td className="border border-gray-100 px-4 py-3 text-center">
+                    <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
+                  </td>
+                  <td className="border border-gray-100 px-4 py-2 font-bold text-center">
+                    <Link href={`/management/school-attendance/${encodeURIComponent(program.name.replace(/\s+/g, "-"))}`}>
+                      <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
+                        View
+                      </button>
+                    </Link>
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </ReusableTable>
       ) : (
         <p className="text-red-500">No data available. Please upload an attendance file.</p>
       )}
