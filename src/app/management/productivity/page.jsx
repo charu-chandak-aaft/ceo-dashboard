@@ -31,7 +31,7 @@ function FacultyProductivityPage() {
   const fetchAttendance = async (date) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/staff-productivity`, {
+      const response = await fetch(`/api/staff-productivity`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

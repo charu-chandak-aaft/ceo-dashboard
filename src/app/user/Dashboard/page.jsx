@@ -17,7 +17,7 @@ const Dashboard = () => {
     superset: "https://joinsuperset.com",
     almashine: "https://www.almashines.io",
     crc: "#",
-    "attendance-dashboard": "http://localhost:3000/management/school-attendance",
+    "attendance-dashboard": "/management/school-attendance",
     "marketing-anly": "#",
     "sales-analytics": "#",
   };

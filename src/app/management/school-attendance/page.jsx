@@ -19,7 +19,7 @@ export default function AttendancePage() {
   const fetchAttendance = async (date) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/school-attendance`, {
+      const response = await fetch(`/api/school-attendance`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -45,7 +45,7 @@ export default function AttendancePage() {
   const fetchAttendance = async (date, formattedSchoolName) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/program-attendance`, {
+      const response = await fetch(`/api/program-attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -69,7 +69,7 @@ export default function AttendancePage() {
   const fetchRangeAttendance = async (start, end, formattedSchoolName) => {
     setLoadingGraph(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/program-attendance`, {
+      const response = await fetch(`/api/program-attendance`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

@@ -35,7 +35,7 @@ export default function StaffProductivitySummary() {
         setLoading(true);
         const fetchData = async () => {
             try {
-                const res = await fetch(`http://localhost:3000/api/staff-subject-summary`, {
+                const res = await fetch(`/api/staff-subject-summary`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({

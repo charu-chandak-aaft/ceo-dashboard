@@ -37,7 +37,7 @@ export default function SubjectAttendancePage() {
   const fetchAttendance = async (date, formattedSchoolName, formattedProgramName) => {
     setLoading(true);
     try {
-      const response = await fetch(`http://localhost:3000/api/subject-attendance`, {
+      const response = await fetch(`/api/subject-attendance`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
