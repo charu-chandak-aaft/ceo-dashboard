@@ -44,6 +44,17 @@ export default function AttendanceSidebar() {
         >
           <span>📈</span> Productivity
         </Link>
+
+         <Link
+          href="/management/school-productivity"
+          className={`flex items-center gap-2 p-2 rounded-md font-semibold ${
+            pathname === '/management/school-productivity'
+              ? 'bg-purple-600 text-white'
+              : 'hover:bg-gray-100'
+          }`}
+        >
+          <span>📈</span> School-wise Productivity
+        </Link>
       </nav>
 
       <div className="mt-auto p-4 text-sm text-gray-600">

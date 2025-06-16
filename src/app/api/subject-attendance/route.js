@@ -20,7 +20,7 @@ export async function POST(req) {
     if (type === "single" && date) {
       // Exact date match
       query.date = date;
-      console.log("query", query)
+      // console.log("query", query)
     } else if (type === "range" && startDate && endDate) {
       // Date range
       query.date = {

@@ -42,7 +42,7 @@ export default function Layout({ children }) {
           {/* Scrollable Content */}
           <div className="flex-1 px-5 py-4">
             <AttendanceProvider>
-              <main className='h-screen overflow-auto pb-6'>
+              <main className='pb-6'>
                 {children}
               </main>
             </AttendanceProvider>

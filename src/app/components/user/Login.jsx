@@ -40,22 +40,23 @@ export default function LoginPage() {
 
   return (
     <div className="bg-[#f9f9f9] flex items-center justify-center">
-      <div className="h-screen w-full pb-8 bg-[#F8F2F2]">
+      <div className="w-full pb-8 bg-[#F8F2F2]">
         <div className="bg-gradient-to-b from-red-500 to-red-900 text-white py-20 px-10 rounded-b-3xl text-center">
           <h1 className="text-2xl font-black mx-w-sm">
-            Welcome to the AAFT Chatbot Dashboard
+            Welcome to the AAFT Common Dashboard
           </h1>
-          <p className="mt-6 text-[10px]">One tool for your whole team needs</p>
+          {/* <p className="mt-6 text-[10px]">One tool for your whole team needs</p> */}
+          <p className="mt-6 text-[14px] font-medium"> Monitoring your Dashboards Anytime. Easier & Effective than Before </p>
         </div>
 
         <div className="bg-white shadow-lg p-6 rounded-xl max-w-md lg:max-w-sm mx-auto -mt-10">
           <h3 className="text-center text-gray-400 uppercase text-xs mb-4">
             Just Login First
           </h3>
-          <h2 className="text-center text-xl font-bold mb-6 text-black">
-            Monitoring your Chatbot Anytime.
+          {/* <h2 className="text-center text-xl font-bold mb-6 text-black">
+            Monitoring your Dashboards Anytime.
             <br /> Easier & Effective than Before
-          </h2>
+          </h2> */}
 
           <form className="space-y-4" onSubmit={handleSubmit(handleFrmSubmit)}>
             <div className="text-sm pb-3">

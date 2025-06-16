@@ -80,7 +80,7 @@ export default function SubjectAttendancePage() {
     { label: 'Total Present', key: 'present' },
     { label: 'Total Absent', key: 'absent' },
     { label: 'Attendance %', key: 'attendance_percentage' },
-    { label: 'View', key: 'view' },
+    // { label: 'View', key: 'view' },
   ];
    const tableData = attendanceData.map(program => ({
     ...program,
@@ -187,13 +187,13 @@ export default function SubjectAttendancePage() {
                   <td className="border border-gray-100 px-4 py-3 text-center">
                     <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
                   </td>
-                  <td className="border border-gray-100 px-4 py-2 font-bold text-center">
+                  {/* <td className="border border-gray-100 px-4 py-2 font-bold text-center">
                     <Link href={`/management/school-attendance/${school}/${encodeURIComponent(semester?.replace(/\s+/g, "-"))}/${encodeURIComponent(program?.name?.replace(/\s+/g, "-"))}`}>
                       <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
                         View
                       </button>
                     </Link>
-                  </td>
+                  </td> */}
                 </tr>
               );
             })}

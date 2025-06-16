@@ -11,9 +11,9 @@ const Dashboard = () => {
   console.log("profileDetails", profileDetails);
   const externalLinks = {
     leadsquared: "https://identity.leadsquared.com/",
-    camu: "https://www.camudigitalcampus.com",
+    camu: "https://staff.aaft.com/#/?id=65e2bdb9920f21a6f8a4ceb8",
     salesken: "https://www.salesken.ai",
-    lms: "#",
+    mcube: "https://app.mcube.com",
     superset: "https://joinsuperset.com",
     almashine: "https://www.almashines.io",
     crc: "#",
@@ -36,12 +36,10 @@ const Dashboard = () => {
           {[
             "Leadsquared",
             "Camu",
-            "Salesken",
-            "LMS",
             "Superset",
             "Almashine",
-            "CRC",
-            "Marketing Anly",
+            "MCube",
+            "ChatBot Dashboard",
             "Attendance Dashboard",
             "Sales Analytics",
           ].map((title, index) => {

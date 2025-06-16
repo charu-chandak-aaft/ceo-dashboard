@@ -84,7 +84,8 @@ export default function AttendancePage() {
 
       const data = await response.json();
       setRangeData(response.ok ? data.res : []);
-    } catch (error) {
+    } 
+    catch (error) {
       console.error('Fetch Error:', error);
       setRangeData([]);
     } finally {

@@ -37,7 +37,7 @@ const Dashboard = () => {
                 </div>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-4" style={{ gridTemplateColumns: "70% 30%" }}>
                     <div className="grid grid-col-2 lg:grid-cols-3 gap-2">
-                        {["Leadsquared", "Camu", "Salesken", "LMS", "Superset", "Almashine", "CRC", "Marketing Anly.", "Sales Analytics"].map((title, index) => (
+                        {["Leadsquared", "Camu", "Superset", "Almashine", "ChatBot Dashboard", "Sales Analytics"].map((title, index) => (
                             <div key={index} className="bg-gray-800 p-6 rounded-lg text-center relative flex items-center justify-center flex-col mt-10">
                                 <div className="absolute -top-8 bg-white p-2 rounded-lg shadow-md">
                                     <img src="/leadsquared-logo.png" alt={`${title} Logo`} className="w-12 h-12" />

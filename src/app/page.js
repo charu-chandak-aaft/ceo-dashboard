@@ -13,7 +13,7 @@ export default function Page() {
     };
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-[#F8F2F2]">
             {renderPage()}
         </div>
     );

@@ -10,22 +10,22 @@ import withAuth from '../../../../lib/withAuth';
 
 const getSessiondate = () => {
   if (typeof window !== "undefined" && sessionStorage.getItem('initialDate')) {
-    return sessionStorage.getItem('initialDate');
+    return new Date(sessionStorage.getItem('initialDate'));
   }
   return null;
 };
 
 function FacultyProductivityPage() {
   const [attendanceData, setAttendanceData] = useState([]);
+  const [fullAttendanceData, setFullAttendanceData] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState(() => {
-    if (getSessiondate()) {
-      return getSessiondate();
-    } else {
-      const yesterday = new Date();
-      yesterday.setDate(yesterday.getDate() - 1);
-      return yesterday;
-    }
+    const saved = getSessiondate();
+    if (saved) return saved;
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday;
   });
 
   const fetchAttendance = async (date) => {
@@ -46,13 +46,16 @@ function FacultyProductivityPage() {
       const data = await response.json();
 
       if (response.ok) {
-        setAttendanceData(data.res);
+        setFullAttendanceData(data.res);
+        setAttendanceData(data.res); // Initial display
       } else {
         console.error('Error:', data.message);
+        setFullAttendanceData([]);
         setAttendanceData([]);
       }
     } catch (error) {
       console.error('Fetch Error:', error);
+      setFullAttendanceData([]);
       setAttendanceData([]);
     } finally {
       setLoading(false);
@@ -62,7 +65,16 @@ function FacultyProductivityPage() {
   const handleChange = (date) => {
     sessionStorage.setItem('initialDate', date);
     setSelectedDate(date);
-  }
+  };
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
+    const filtered = fullAttendanceData.filter(item =>
+      item.staff_name?.toLowerCase().includes(value)
+    );
+    setAttendanceData(filtered);
+  };
 
   const tableHeaders = [
     { label: 'Faculty Id', key: 'staff_id' },
@@ -78,21 +90,30 @@ function FacultyProductivityPage() {
   }, [selectedDate]);
 
   return (
-    <div className='bg-white rounded-xl p-5'>
-      <div className='flex justify-between items-center'>
+    <div className='bg-white rounded-xl p-5 overflow-x-auto max-w-full overflow-hidden '>
+      {/* Header */}
+      <div className='flex justify-between items-center mb-4'>
         <div className='text-lg font-bold'>Faculty Productivity Summary</div>
-        <div className="relative">
+        <div className="flex gap-2">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Search by Faculty Name"
+            className="px-4 py-1 text-sm rounded-full border border-gray-300 focus:ring-2 focus:ring-violet-500"
+          />
           <DatePicker
             selected={selectedDate}
-            onChange={(date) => handleChange(date)}
+            onChange={handleChange}
             dateFormat="dd/MM/yyyy"
-            className="w-30 px-4 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500 z-20"
+            className="w-30 px-1 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500"
             popperPlacement="bottom-end"
             maxDate={new Date()}
           />
         </div>
       </div>
 
+      {/* Loading or Table */}
       {loading ? (
         <div className="p-4 text-lg">Loading...</div>
       ) : attendanceData?.length > 0 ? (
@@ -126,9 +147,11 @@ function FacultyProductivityPage() {
                     <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{productivity_percentage}%</span>
                   </td>
                   <td className="border border-gray-100 px-4 py-2 font-bold text-center">
-                    <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
-                      View
-                    </button>
+                    <Link href={`productivity/${encodeURIComponent(program.staff_id)}`}>
+                      <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
+                        View
+                      </button>
+                    </Link>
                   </td>
                 </tr>
               );
