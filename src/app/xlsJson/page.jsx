@@ -1,4 +1,3 @@
-'use Client';
 import { NextResponse } from 'next/server';
 import formidable from 'formidable';
 import { readFile, unlink } from 'fs/promises';
