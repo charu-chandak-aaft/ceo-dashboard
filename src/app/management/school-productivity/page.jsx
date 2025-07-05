@@ -120,14 +120,14 @@ export default function SchoolAttendancePage() {
 
     return (
         <div className="p-5 rounded-xl shadow-sm w-full">
-            <h2 className="font-semibold text-lg mb-4">
+            <h2 className="font-semibold text-lg mb-4 text-black">
                 School <span className="font-bold">Attendance Summary</span>
             </h2>
             <div className="bg-white rounded-2xl shadow-md flex flex-col md:flex-row gap-4 p-6 max-h-none md:max-h-[65vh] overflow-hidden">
                 {/* Left Pane */}
                 <div className="w-full md:w-1/2 border border-gray-200 shadow-md rounded-xl p-6 flex flex-col overflow-hidden">
                     <div className="flex justify-between items-center mb-4">
-                        <h2 className="text-lg font-semibold">Program Information</h2>
+                        <h2 className="text-lg font-semibold text-black">Program Information</h2>
                         <div className="relative">
                             {/* <DateRangePicker
                                 selected={selectedDate}

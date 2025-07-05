@@ -122,7 +122,7 @@ export default function AttendancePage() {
   return (
     <div className='bg-white rounded-xl p-3 min-h-[280px]'>
       <div className='flex justify-between items-center pb-3'>
-        <div className='text-lg font-bold'>Program's Attendance Summary</div>
+        <div className='text-lg font-bold text-black'>Program's Attendance Summary</div>
         <DatePicker
           selected={selectedDate}
           // onChange={(date) => setSelectedDate(date)}

@@ -100,7 +100,7 @@ function FacultyProductivityPage() {
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search by Faculty Name"
-            className="px-4 py-1 text-sm rounded-full border border-gray-300 focus:ring-violet-500"
+            className="px-4 py-1 text-sm rounded-full border border-gray-300 focus:ring-violet-500 text-black"
           />
           <DatePicker
             selected={selectedDate}
