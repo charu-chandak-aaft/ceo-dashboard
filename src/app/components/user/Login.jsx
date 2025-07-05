@@ -30,7 +30,7 @@ export default function LoginPage() {
     const handleFrmSubmit = useCallback(async (payload) => {
       const result = await postData(payload);
       if (result?.success) {
-        console.log("login data", result);
+        // console.log("login data", result);
         setCookie('token', result?.token);
         setProfileDetails(result?.user);
         router.push('/user/Dashboard'); // Use replace to prevent back navigation to login

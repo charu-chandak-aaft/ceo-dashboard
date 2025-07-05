@@ -21,7 +21,7 @@ export default function AttendanceHeader() {
           <span className="my-auto text-sm font-semibold">Attendance Dashboard Overview</span>
         </div>
 
-        <div className="px-4 flex flex-wrap items-center">
+        {/* <div className="px-4 flex flex-wrap items-center">
           {menuItems.map((item, index) => (
             <a
               key={index}
@@ -31,7 +31,7 @@ export default function AttendanceHeader() {
               {item.label}
             </a>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <div className="flex items-center cursor-pointer gap-2">

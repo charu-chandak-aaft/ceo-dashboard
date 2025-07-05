@@ -54,7 +54,7 @@ export async function POST(req) {
         if (!sheetData || sheetData.length === 0) {
             return NextResponse.json({ error: "No attendance data available" }, { status: 404 });
         }
-        console.log("sheetData", sheetData);
+        // console.log("sheetData", sheetData);
         // console.log("Raw Headers:", Object.keys(sheetData[8]));
         const parsedData = parseExcelData(sheetData);
         // console.log("parseData", parsedData)

@@ -10,14 +10,14 @@ import ReusableTable from '@/app/components/shared/ReusableTable';
 export default function AttendancePage() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [selectedDate, setSelectedDate] = useState(() => {
-  //   const yesterday = new Date();
-  //   yesterday.setDate(yesterday.getDate() - 1);
-  //   return yesterday;
-  // });
   const [selectedDate, setSelectedDate] = useState(() => {
-    return new Date('2025-05-14');
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    return yesterday;
   });
+  // const [selectedDate, setSelectedDate] = useState(() => {
+  //   return new Date('2025-05-14');
+  // });
 
   const fetchAttendance = async (date) => {
     setLoading(true);
@@ -50,7 +50,7 @@ export default function AttendancePage() {
   };
 
   const handleChange = (date) => {
-    console.log('date', date);
+    // console.log('date', date);
     sessionStorage.setItem('initialDate', date);
     setSelectedDate(date);
   }
@@ -86,51 +86,6 @@ export default function AttendancePage() {
       {loading ? (
         <div className="p-4 text-lg">Loading...</div>
       ) : attendanceData?.length > 0 ? (
-        // <div className="max-h-[70%] overflow-auto scrollbar-hide overflow-x-auto rounded-lg overflow-hidden border border-gray-200 shadow-md">
-        //   <table className="min-w-full border-collapse border border-gray-200 shadow-lg rounded-md text-gray-900">
-        //     <thead className="text-sm font-medium py-3">
-        //       <tr className="bg-[#EFEFF4] text-left">
-        //         <th className="border border-gray-100 px-4 py-2">School Name</th>
-        //         <th className="border border-gray-100 px-4 py-2">Total Actual</th>
-        //         <th className="border border-gray-100 px-4 py-2">Total Present</th>
-        //         <th className="border border-gray-100 px-4 py-2">Total Absent</th>
-        //         <th className="border border-gray-100 px-4 py-2">Attendance %</th>
-        //         <th className="border border-gray-100 px-4 py-2">View</th>
-        //       </tr>
-        //     </thead>
-        //     <tbody className='text-sm'>
-        //       {attendanceData.map((program, index) => {
-        //         if (!program) return null;
-        //         const attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
-
-        //         return (
-        //           <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
-        //             <td className="border border-gray-100 px-4 py-2 font-medium">
-        //                 {program.name}
-        //             </td>
-        //             <td className="border border-gray-100 px-4 py-2 text-center">{program.total_actual}</td>
-        //             <td className="border border-gray-100 px-4 py-3 text-center">
-        //               <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium">{program.total_present}</span>
-        //             </td>
-        //             <td className="border border-gray-100 px-4 py-3 text-center">
-        //               <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full font-medium">{program.total_absent}</span>
-        //             </td>
-        //             <td className="border border-gray-100 px-4 py-3 text-center">
-        //               <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
-        //             </td>
-        //             <td className="border border-gray-100 px-4 py-2 font-bold text-center">
-        //               <Link href={`/management/school-attendance/${encodeURIComponent(program.name.replace(/\s+/g, "-"))}`}>
-        //               <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition">
-        //                 View
-        //               </button>
-        //               </Link>
-        //             </td>
-        //           </tr>
-        //         );
-        //       })}
-        //     </tbody>
-        //   </table>
-        // </div>
 
         <ReusableTable
           title="Program Attendance Summary"
@@ -147,7 +102,8 @@ export default function AttendancePage() {
           </thead>
           <tbody className="text-sm">
             {attendanceData.map((program, index) => {
-              const attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
+              let attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
+              attendancePercentage = isNaN(attendancePercentage)? 0 : attendancePercentage;
               return (
                 <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
                   <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>

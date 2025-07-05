@@ -47,7 +47,7 @@ export default function StaffProductivitySummary() {
                 });
 
                 const data = await res.json();
-                console.log(' first data', data.res);
+                // console.log(' first data', data.res);
                 // setRangeData(response.ok ? data.res : []);
                 // console.log('res data', res);
                 // const data = res.data.res;

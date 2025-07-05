@@ -28,7 +28,7 @@ import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip } from "recha
 
 export default function ProgramGraph({data})
  {
-    console.log(data, 'graph');
+    // console.log(data, 'graph');
      const chartWidth = data.length * SCROLLABLE_BAR_WIDTH;
   return (
     // <div className="p-4 md:p-8 bg-gray-100 min-h-screen">

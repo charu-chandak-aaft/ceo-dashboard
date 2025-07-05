@@ -37,3 +37,8 @@ body {
 .react-datepicker-popper {
   z-index: 999 !important; /* Tailwind z-50 */
 }
+@media (min-width: 1024px) {
+  .lg-grid-custom {
+    grid-template-columns: 70% 30%;
+  }
+}

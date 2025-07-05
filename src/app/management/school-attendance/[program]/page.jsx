@@ -34,7 +34,7 @@ export default function AttendancePage() {
   const formattedSchoolName = school ? decodeURIComponent(school).replace(/-/g, " ") : '';
 
   const handleDateRangeChange = (type, date) => {
-    console.log(type,date,'cvxghxgjgd')
+    // console.log(type,date,'cvxghxgjgd')
     if (type === "start") {
       setStartDate(date);
     } else {
@@ -93,7 +93,7 @@ export default function AttendancePage() {
     }
   };
   const handleChange = (date) => {
-    console.log('date', date);
+    // console.log('date', date);
     sessionStorage.setItem('initialDate', date);
     setSelectedDate(date);
   }
@@ -142,7 +142,7 @@ export default function AttendancePage() {
             title="Program Attendance Summary"
             headers={tableHeaders}
             data={tableData}
-            height="240px"
+            height="340px"
           >
             <thead className="text-sm font-medium bg-[#EFEFF4] sticky top-[-1px] z-10">
               <tr className="text-left">
@@ -153,7 +153,8 @@ export default function AttendancePage() {
             </thead>
             <tbody className="text-sm">
               {attendanceData.map((program, index) => {
-                const attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
+                let attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
+                attendancePercentage = isNaN(attendancePercentage)? 0 : attendancePercentage;
                 return (
                   <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
                     <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>

@@ -8,18 +8,21 @@ import withAuth from "../../../../lib/withAuth";
 
 const Dashboard = () => {
   const { profileDetails } = useProfileContext();
-  console.log("profileDetails", profileDetails);
+  // console.log("profileDetails", profileDetails);
   const externalLinks = {
     leadsquared: "https://identity.leadsquared.com/",
     camu: "https://staff.aaft.com/#/?id=65e2bdb9920f21a6f8a4ceb8",
     salesken: "https://www.salesken.ai",
     mcube: "https://app.mcube.com",
-    superset: "https://joinsuperset.com",
+    superset: "https://app.joinsuperset.com/#/s/feed",
     almashine: "https://www.almashines.io",
     crc: "#",
+    "chatbot-dashboard": "https://support.aaft.com/dashboard",
+    "chatbot-university-dashboard": "https://support.aaft.edu.in/dashboard",
     "attendance-dashboard": "/management/school-attendance",
+    "referal-dashboard": "https://referral.aaft.com/",
     "marketing-anly": "#",
-    "sales-analytics": "#",
+    // "sales-analytics": "#",
   };
 
   const formatFileName = (title) => title.toLowerCase().replace(/\s|\./g, "-");
@@ -30,7 +33,7 @@ const Dashboard = () => {
         <HeaderBar profile={profileDetails?.designation} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4" style={{ gridTemplateColumns: "70% 30%" }}>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg-grid-custom">
         {/* Left Side Cards */}
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
           {[
@@ -40,11 +43,14 @@ const Dashboard = () => {
             "Almashine",
             "MCube",
             "ChatBot Dashboard",
+            "ChatBot University Dashboard",
+            "Referal Dashboard",
             "Attendance Dashboard",
-            "Sales Analytics",
+            // "Sales Analytics",
           ].map((title, index) => {
             const fileName = formatFileName(title) + ".png";
             const key = formatFileName(title);
+            // console.log('key', key);
             const link = externalLinks[key] || "#";
 
             return (
@@ -56,7 +62,7 @@ const Dashboard = () => {
                   <img
                     src={`/logos/${fileName}`}
                     alt={`${title} Logo`}
-                    className="w-12 h-12 object-contain"
+                    className="w-14 h-14 object-contain"
                   />
                 </div>
                 <div className="text-center mt-8">
@@ -65,6 +71,7 @@ const Dashboard = () => {
                     <p className="text-gray-400 text-sm hover:underline">Click and Login</p>
                   </Link>
                 </div>
+                <Link href={link} target="_blank" rel="noopener noreferrer">
                 <div className="absolute bottom-[-1px] right-[-1px] cursor-pointer">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -89,6 +96,7 @@ const Dashboard = () => {
                     </g>
                   </svg>
                 </div>
+                </Link>
               </div>
             );
           })}
@@ -96,13 +104,13 @@ const Dashboard = () => {
 
         {/* Right Side Profile & Goal */}
         <div className="p-6 text-center relative flex items-center flex-col top-0">
-          <div className="bg-red-500 p-6 rounded-lg text-center">
+          {/* <div className="bg-red-500 p-6 rounded-lg text-center">
             <h3 className="text-lg text-white">Marketing goal for the past year</h3>
             <p className="text-4xl font-bold text-white">$4,520.00</p>
             <p className="text-sm text-white">You reached 68% of your goal</p>
-          </div>
+          </div> */}
 
-          <div className="bg-gray-800 p-12 rounded-lg text-center relative flex items-center justify-center flex-col mt-12">
+          <div className="bg-gray-800 p-12 rounded-lg text-center relative flex items-center justify-center flex-col mt-1">
             <div className="absolute -top-8 p-2 rounded-lg shadow-md mb-4">
               <img
                 src="/logos/profile.jpg"

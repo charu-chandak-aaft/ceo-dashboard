@@ -21,7 +21,7 @@ export const ProfileProvider = ({ children }) => {
 
   // Save profile to localStorage on change
   useEffect(() => {
-    console.log("storedProfile1",profileDetails);
+    // console.log("storedProfile1",profileDetails);
     if (profileDetails) {
       // console.log("465473737")
       localStorage.setItem("profileDetails", JSON.stringify(profileDetails));

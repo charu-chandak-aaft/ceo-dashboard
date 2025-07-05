@@ -113,8 +113,8 @@ export default function SchoolAttendancePage() {
     const totalAbsent = records.reduce((acc, item) => acc + item.total_absent, 0);
 
     // Calculate attendance percentage safely
-    const attendancePercent = totalActual > 0 ? Math.round((totalPresent / totalActual) * 100) : 0;
-
+    let attendancePercent = totalActual > 0 ? Math.round((totalPresent / totalActual) * 100) : 0;
+    attendancePercent = isNaN(attendancePercent)? 0 : attendancePercent;
     // Extract school name from first record if exists
     const schoolName = records.length > 0 ? records[0].schoolName : '';
 

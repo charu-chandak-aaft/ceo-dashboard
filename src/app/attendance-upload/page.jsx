@@ -5,7 +5,7 @@ export default function AttendanceUpload() {
   const [file, setFile] = useState(null);
   const [organisations, setOrganisations] = useState([]);
   const [selectedOrg, setSelectedOrg] = useState('');
-  const [message, setMessage] = useState('');
+  const [status, setStatus] = useState({type:'', message:''});
 
   useEffect(() => {
     // Fetch organisations from backend
@@ -20,7 +20,7 @@ export default function AttendanceUpload() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file || !selectedOrg) {
-      setMessage('Please select file and organisation');
+      setStatus({type:'error', message:'Please select file and organisation'});
       return;
     }
 
@@ -34,10 +34,13 @@ export default function AttendanceUpload() {
     });
 
     const data = await res.json();
+    console.log('data',data);
     if (res.ok) {
-      setMessage('Upload successful!');
+     setStatus({type:'success', message:'upload succesfully'});
+     setFile(null);
+      setSelectedOrg('');
     } else {
-      setMessage(data.error || 'Something went wrong');
+      setStatus({type:'error', message:data.error});
     }
   };
 
@@ -79,8 +82,8 @@ export default function AttendanceUpload() {
         </button>
       </form>
 
-      {message && (
-        <p className="mt-4 text-sm text-green-600 font-medium">{message}</p>
+      {status && (
+        <p className={`mt-4 text-sm ${status.type=='error'? 'text-red-600': 'text-green-600'}  font-medium`}>{status.message}</p>
       )}
     </div>
   );

@@ -26,14 +26,14 @@ export default function SubjectAttendancePage() {
     yesterday.setDate(yesterday.getDate() - 1);
     return yesterday;
   });
-  console.log('sem console', params);
+  // console.log('sem console', params);
   const school = params.program;
   const program = params.semester;
   const semester = params.subject;
   const formattedProgramName = program ? decodeURIComponent(program).replace(/-/g, " ") : '';
   const formattedSemesterName = semester ? decodeURIComponent(semester).replace(/-/g, " ") : '';
   const formattedSchoolName = school ? decodeURIComponent(school).replace(/-/g, " ") : '';
-  console.log("school name", formattedProgramName)
+  // console.log("school name", formattedProgramName)
   const fetchAttendance = async (date, formattedSchoolName, formattedProgramName) => {
     setLoading(true);
     try {
@@ -107,60 +107,11 @@ export default function SubjectAttendancePage() {
       {loading ? (
         <div className="p-4 text-lg">Loading...</div>
       ) : attendanceData?.length > 0 ? (
-        // <div className="rounded-lg border border-gray-200 shadow-md pb-2.5">
-        //   <div className="overflow-x-auto">
-        //     <div className="max-h-[70vh] overflow-y-auto">
-        //       <table className="min-w-full border-collapse border border-gray-200 shadow-lg rounded-md text-gray-900">
-        //         <thead className="text-sm font-medium bg-[#EFEFF4] sticky top-0 z-10">
-        //           <tr className="text-left">
-        //             <th className="border border-gray-100 px-4 py-2">Subject</th>
-        //             <th className="border border-gray-100 px-4 py-2">Staff ID/Staff Name</th>
-        //             <th className="border border-gray-100 px-4 py-2">Total Actual</th>
-        //             <th className="border border-gray-100 px-4 py-2">Total Present</th>
-        //             <th className="border border-gray-100 px-4 py-2">Total Absent</th>
-        //             <th className="border border-gray-100 px-4 py-2">Attendance %</th>
-        //             <th className="border border-gray-100 px-4 py-2">View</th>
-        //           </tr>
-        //         </thead>
-        //         <tbody className="text-sm">
-        //           {attendanceData.map((program, index) => {
-        //             if (!program) return null;
-        //             const attendancePercentage = ((program.present / program.actual) * 100).toFixed(2);
-
-        //             return (
-        //               <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
-        //                 <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>
-        //                 <td className="border border-gray-100 px-4 py-2 font-medium">{program.staff_id} / {program.staff_name}</td>
-        //                 <td className="border border-gray-100 px-4 py-2 text-center">{program.actual}</td>
-        //                 <td className="border border-gray-100 px-4 py-2 text-center">
-        //                   <span className="bg-green-100 text-green-600 px-3 py-1 rounded-full font-medium">{program.present}</span>
-        //                 </td>
-        //                 <td className="border border-gray-100 px-4 py-2 text-center">
-        //                   <span className="bg-red-100 text-red-600 px-3 py-1 rounded-full font-medium">{program.absent}</span>
-        //                 </td>
-        //                 <td className="border border-gray-100 px-4 py-2 text-center">
-        //                   <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
-        //                 </td>
-        //                 <td className="border border-gray-100 px-4 py-2 text-center">
-        //                   <Link href={`/management/school-attendance/${school}/${encodeURIComponent(program.name.replace(/\s+/g, "-"))}`}>
-        //                     <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
-        //                       View
-        //                     </button>
-        //                   </Link>
-        //                 </td>
-        //               </tr>
-        //             );
-        //           })}
-        //         </tbody>
-        //       </table>
-        //     </div>
-        //   </div>
-        // </div>
          <ReusableTable
           title="Program Attendance Summary"
           headers={tableHeaders}
           data={tableData}
-          height="240px"
+          height="360px"
         >
           <thead className="text-sm font-medium bg-[#EFEFF4] sticky top-[-1px] z-10">
             <tr className="text-left">
@@ -171,7 +122,8 @@ export default function SubjectAttendancePage() {
           </thead>
           <tbody className="text-sm">
             {attendanceData.map((program, index) => {
-              const attendancePercentage = ((program.present / program.actual) * 100).toFixed(2);
+              let attendancePercentage = ((program.present / program.actual) * 100).toFixed(2);
+              attendancePercentage = isNaN(attendancePercentage)? 0 : attendancePercentage;
               return (
                 <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
                   <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>

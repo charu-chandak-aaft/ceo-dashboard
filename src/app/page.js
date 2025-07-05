@@ -4,7 +4,7 @@ import Login from '@/app/components/user/Login';
 
 export default function Page() {
     const pathname = usePathname(); // Get current URL path
-    console.log('pathname', pathname);
+    // console.log('pathname', pathname);
 
     const renderPage = () => {
         if (pathname === "/login") return <Login />;

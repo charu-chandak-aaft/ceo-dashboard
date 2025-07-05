@@ -18,15 +18,15 @@ export default function AttendanceSidebar() {
     };
 
   return (
-    <aside className="w-64 bg-white shadow-lg flex flex-col">
-      <div className="px-6 py-4 font-bold text-base">
+    <aside className="h-full w-64 bg-white shadow-lg flex flex-col">
+      {/* <div className="px-6 py-4 font-bold text-base">
         AAFT NOIDA Attendance
-      </div>
+      </div> */}
       <nav className="flex flex-col gap-1 p-4 text-sm text-gray-700">
         <Link
           href="/management/school-attendance"
           className={`flex items-center gap-2 p-2 rounded-md font-semibold ${
-            pathname === '/management/school-attendance'
+            pathname.startsWith('/management/school-attendance')
               ? 'bg-purple-600 text-white'
               : 'hover:bg-gray-100'
           }`}
@@ -37,7 +37,7 @@ export default function AttendanceSidebar() {
         <Link
           href="/management/productivity"
           className={`flex items-center gap-2 p-2 rounded-md font-semibold ${
-            pathname === '/management/productivity'
+            pathname.startsWith('/management/productivity')
               ? 'bg-purple-600 text-white'
               : 'hover:bg-gray-100'
           }`}
@@ -45,16 +45,16 @@ export default function AttendanceSidebar() {
           <span>📈</span> Productivity
         </Link>
 
-         <Link
+         {/* <Link
           href="/management/school-productivity"
           className={`flex items-center gap-2 p-2 rounded-md font-semibold ${
-            pathname === '/management/school-productivity'
+            pathname.startsWith('/management/school-productivity')
               ? 'bg-purple-600 text-white'
               : 'hover:bg-gray-100'
           }`}
         >
           <span>📈</span> School-wise Productivity
-        </Link>
+        </Link> */}
       </nav>
 
       <div className="mt-auto p-4 text-sm text-gray-600">

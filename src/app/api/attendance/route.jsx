@@ -81,7 +81,7 @@ export async function GET() {
 
     globalAttendanceData = { data: summary };
 
-    console.log("📌 Attendance Data Processed:", globalAttendanceData);
+    // console.log("📌 Attendance Data Processed:", globalAttendanceData);
     return new Response(JSON.stringify(globalAttendanceData), { status: 200 });
   } catch (error) {
     console.error("❌ Error processing file:", error);

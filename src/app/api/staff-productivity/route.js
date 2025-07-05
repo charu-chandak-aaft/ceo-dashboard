@@ -28,7 +28,7 @@ export async function POST(req) {
       return NextResponse.json({ error: "Invalid date parameters" }, { status: 400 });
     }
 
-    console.log("MatchStage:", matchStage);
+    // console.log("MatchStage:", matchStage);
 
     const staffProductivity = await StaffAttendance.aggregate([
       { $match: matchStage },

@@ -14,7 +14,7 @@ const useGet = (endpoint) => {
   const [error, setError] = useState(null);
   const [response, setResponse] = useState(null);
   const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/${endpoint}`;
-  console.log('API_URL get', API_URL)
+  // console.log('API_URL get', API_URL)
 
   const getData = async () => {
     setLoading(true);
