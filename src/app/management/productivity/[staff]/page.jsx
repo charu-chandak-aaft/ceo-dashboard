@@ -78,7 +78,7 @@ export default function StaffProductivitySummary() {
         <div className="p-2">
             <div className="max-w-6xl mx-auto">
                 {/* Heading */}
-                <h1 className="text-xl font-bold mb-4">Productivity Summary - {programs[0]?.staff_name || "Loading..."}</h1>
+                <h1 className="text-xl font-bold mb-4 text-black">Productivity Summary - {programs[0]?.staff_name || "Loading..."}</h1>
 
                 {/* Main Container */}
                 <div className="bg-white rounded-2xl shadow-md flex flex-col md:flex-row gap-4 p-6 max-h-none md:max-h-[65vh] overflow-hidden">

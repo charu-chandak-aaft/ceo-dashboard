@@ -93,14 +93,14 @@ function FacultyProductivityPage() {
     <div className='bg-white rounded-xl p-5 overflow-x-auto max-w-full overflow-hidden '>
       {/* Header */}
       <div className='flex justify-between items-center mb-4'>
-        <div className='text-lg font-bold'>Faculty Productivity Summary</div>
+        <div className='text-lg font-bold text-black'>Faculty Productivity Summary</div>
         <div className="flex gap-2">
           <input
             type="text"
             value={searchTerm}
             onChange={handleSearch}
             placeholder="Search by Faculty Name"
-            className="px-4 py-1 text-sm rounded-full border border-gray-300 focus:ring-2 focus:ring-violet-500"
+            className="px-4 py-1 text-sm rounded-full border border-gray-300 focus:ring-violet-500"
           />
           <DatePicker
             selected={selectedDate}

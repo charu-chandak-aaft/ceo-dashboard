@@ -69,7 +69,7 @@ export default function AttendancePage() {
   return (
     <div className='bg-white rounded-xl p-5'>
       <div className='flex justify-between items-center'>
-        <div className='text-lg font-bold'>School Attendance Summary</div>
+        <div className='text-lg font-bold text-black'>School Attendance Summary</div>
         <div className="relative">
           <DatePicker
             selected={selectedDate}

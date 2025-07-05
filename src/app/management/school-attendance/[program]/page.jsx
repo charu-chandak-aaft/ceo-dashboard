@@ -32,7 +32,7 @@ export default function AttendancePage() {
 
   const school = params.program;
   const formattedSchoolName = school ? decodeURIComponent(school).replace(/-/g, " ") : '';
-
+  sessionStorage.setItem('initialDate', selectedDate);
   const handleDateRangeChange = (type, date) => {
     // console.log(type,date,'cvxghxgjgd')
     if (type === "start") {
