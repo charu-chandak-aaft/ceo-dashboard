@@ -67,7 +67,7 @@ export default function HeaderBar({profile}) {
         {/* Country Flag */}
         <div className="bg-[#1F2A40] p-1.5 rounded-md cursor-pointer">
           <Image
-            src="/logos/indianflag.jpg"
+            src="/logos/indian-flag.jpg"
             alt="India-Flag"
             width={24}
             height={24}
