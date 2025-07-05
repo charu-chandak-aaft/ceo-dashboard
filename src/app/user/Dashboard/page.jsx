@@ -15,7 +15,7 @@ const Dashboard = () => {
     salesken: "https://www.salesken.ai",
     mcube: "https://app.mcube.com",
     superset: "https://app.joinsuperset.com/#/s/feed",
-    almashine: "https://www.almashines.io",
+    almashine: "https://alumni.aaft.com/account?cid=1371",
     crc: "#",
     "chatbot-dashboard": "https://support.aaft.com/dashboard",
     "chatbot-university-dashboard": "https://support.aaft.edu.in/dashboard",
