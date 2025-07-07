@@ -9,6 +9,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import ReusableTable from '@/app/components/shared/ReusableTable';
 import ProgramGraph from '@/app/components/shared/ProgramGraph';
 import DateRangePicker from '@/app/components/shared/DateRangePicker';
+import withAuth from '../../../../../lib/withAuth';
 
 const getSessiondate = () => {
   if (typeof window !== 'undefined') {
@@ -18,7 +19,7 @@ const getSessiondate = () => {
   return null;
 };
 
-export default function AttendancePage() {
+function ProgramPage() {
   const params = useParams();
   const [attendanceData, setAttendanceData] = useState([]);
    const [rangeData, setRangeData] = useState([]);
@@ -97,6 +98,17 @@ export default function AttendancePage() {
     sessionStorage.setItem('initialDate', date);
     setSelectedDate(date);
   }
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const storedDate = sessionStorage.getItem('initialDate');
+      if (storedDate) {
+        setSelectedDate(new Date(storedDate));
+      } else {
+        sessionStorage.setItem('initialDate', selectedDate);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     // fetchRangeAttendance(formattedSchoolName);
@@ -206,3 +218,4 @@ export default function AttendancePage() {
     </div >
   );
 }
+export default withAuth(ProgramPage);

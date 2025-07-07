@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
+import withAuth from "../../../../../lib/withAuth";
 // import axios from "axios";
 
 const getSessiondate = () => {
@@ -12,7 +13,7 @@ const getSessiondate = () => {
     }
     return null;
 };
-export default function StaffProductivitySummary() {
+function StaffProductivitySummary() {
     const params = useParams();
     // console.log('params', params);
     const [programs, setPrograms] = useState([]);
@@ -179,3 +180,4 @@ export default function StaffProductivitySummary() {
         </div>
     );
 }
+export default withAuth(StaffProductivitySummary);

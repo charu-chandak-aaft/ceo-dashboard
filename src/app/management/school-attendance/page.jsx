@@ -6,8 +6,9 @@ import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import ReusableTable from '@/app/components/shared/ReusableTable';
+import withAuth from '../../../../lib/withAuth';
 
-export default function AttendancePage() {
+function AttendancePage() {
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedDate, setSelectedDate] = useState(() => {
@@ -135,3 +136,4 @@ export default function AttendancePage() {
     </div>
   );
 }
+export default withAuth(AttendancePage);

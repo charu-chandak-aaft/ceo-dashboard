@@ -1,7 +1,8 @@
 'use client';
 import { useState, useEffect } from 'react';
+import withAuth from '../../../lib/withAuth';
 
-export default function AttendanceUpload() {
+function AttendanceUpload() {
   const [file, setFile] = useState(null);
   const [organisations, setOrganisations] = useState([]);
   const [selectedOrg, setSelectedOrg] = useState('');
@@ -88,3 +89,4 @@ export default function AttendanceUpload() {
     </div>
   );
 }
+export default withAuth(AttendanceUpload);

@@ -7,6 +7,7 @@ import { useParams } from "next/navigation";
 import "react-datepicker/dist/react-datepicker.css";
 import { format } from 'date-fns';
 import ReusableTable from '@/app/components/shared/ReusableTable';
+import withAuth from '../../../../../../../lib/withAuth';
 
 const getSessiondate = () => {
   if (typeof window !== "undefined" && sessionStorage.getItem('initialDate')) {
@@ -14,7 +15,7 @@ const getSessiondate = () => {
   }
   return null;
 };
-export default function SubjectAttendancePage() {
+function SubjectAttendancePage() {
   const params = useParams();
   const [attendanceData, setAttendanceData] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -158,3 +159,4 @@ export default function SubjectAttendancePage() {
     </div>
   );
 }
+export default withAuth(SubjectAttendancePage);
