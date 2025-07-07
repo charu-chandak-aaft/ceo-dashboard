@@ -39,7 +39,8 @@ export default function Layout({ children }) {
           <div className="flex justify-between items-center px-4 pt-4 z-10">
             {/* Tabs */}
             <div className="flex gap-1 p-1 rounded-t-lg">
-              {['AAFT NOIDA', 'AAFT UNIVERSITY'].map(tab => (
+              {/* {['AAFT NOIDA', 'AAFT UNIVERSITY'].map(tab => ( */}
+              {['AAFT NOIDA'].map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}

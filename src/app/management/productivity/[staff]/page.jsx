@@ -85,8 +85,8 @@ export default function StaffProductivitySummary() {
                     {/* Left Pane */}
                     <div className="w-full md:w-1/2 border border-gray-200 shadow-md rounded-xl p-6 flex flex-col overflow-hidden">
                         <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-semibold">Program Information</h2>
-                            <div className="relative">
+                            <h2 className="text-lg font-semibold text-black">Program Information</h2>
+                            {/* <div className="relative">
                                 <DatePicker
                                     selected={selectedDate}
                                     onChange={(date) => handleChange(date)}
@@ -95,13 +95,13 @@ export default function StaffProductivitySummary() {
                                     popperPlacement="bottom-end"
                                     maxDate={new Date()}
                                 />
-                            </div>
+                            </div> */}
                         </div>
                         <div className="overflow-y-auto flex-grow pr-2 overflow-hidden">
                             <ul className="space-y-3">
                                 {programs.map((program, index) => (
                                     <li key={index} className="flex justify-between items-center">
-                                        <span className="text-sm">{program.name}</span>
+                                        <span className="text-sm text-black">{program.name}</span>
                                         <button
                                             onClick={() => setSelectedProgram(program)}
                                             className={`px-4 py-1 rounded-full text-sm ${selectedProgram?.name === program.name

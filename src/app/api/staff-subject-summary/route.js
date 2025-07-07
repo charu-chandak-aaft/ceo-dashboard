@@ -43,20 +43,21 @@ export async function POST(req) {
     }
 
     const subjects = await Subjects.find(query).sort({ createdAt: -1 });
+    console.log('subjects', subjects);
 
     // Deduplicate based on `programName`
-    const uniqueProgramsMap = new Map();
-    subjects.forEach(item => {
-      if (!uniqueProgramsMap.has(item.programName)) {
-        uniqueProgramsMap.set(item.programName, item);
-      }
-    });
+    // const uniqueProgramsMap = new Map();
+    // subjects.forEach(item => {
+    //   // if (!uniqueProgramsMap.has(item.programName)) {
+    //     uniqueProgramsMap.set(item.programName, item);
+    //   // }
+    // });
 
-    const uniqueSubjects = Array.from(uniqueProgramsMap.values());
+    // const uniqueSubjects = Array.from(uniqueProgramsMap.values());
 
     return NextResponse.json({
-      message: uniqueSubjects.length ? "Unique program data fetched successfully!" : "No data found",
-      res: uniqueSubjects,
+      message: subjects.length ? "Unique program data fetched successfully!" : "No data found",
+      res: subjects,
     });
 
   } catch (error) {
