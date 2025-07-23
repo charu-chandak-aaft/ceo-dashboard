@@ -1,0 +1,138 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model organisation {
+  id              Int               @id @default(autoincrement())
+  name            String
+  isActive        Boolean
+  program         program[]
+  school          school[]
+  semester        semester[]
+  staff           staff[]
+  staffattendance staffattendance[]
+  subject         subject[]
+}
+
+model program {
+  id             Int          @id @default(autoincrement())
+  name           String
+  schoolName     String
+  date           String
+  total_actual   Int
+  total_present  Int
+  total_absent   Int
+  organisationId Int
+  organisation   organisation @relation(fields: [organisationId], references: [id], map: "Program_organisationId_fkey")
+  semester       semester[]
+  subject        subject[]
+
+  @@index([organisationId], map: "Program_organisationId_fkey")
+}
+
+model school {
+  id             Int          @id @default(autoincrement())
+  name           String
+  date           String
+  total_actual   Int
+  total_present  Int
+  total_absent   Int
+  organisationId Int
+  organisation   organisation @relation(fields: [organisationId], references: [id], map: "School_organisationId_fkey")
+
+  @@index([organisationId], map: "School_organisationId_fkey")
+}
+
+model semester {
+  id             Int          @id @default(autoincrement())
+  name           String
+  programName    String
+  schoolName     String
+  date           String
+  total_actual   Int
+  total_present  Int
+  total_absent   Int
+  organisationId Int
+  programId      Int
+  organisation   organisation @relation(fields: [organisationId], references: [id], map: "Semester_organisationId_fkey")
+  program        program      @relation(fields: [programId], references: [id], map: "Semester_programId_fkey")
+  subject        subject[]
+
+  @@index([organisationId], map: "Semester_organisationId_fkey")
+  @@index([programId], map: "Semester_programId_fkey")
+}
+
+model staff {
+  id                Int          @id @default(autoincrement())
+  staff_id          String
+  staff_name        String
+  subjectName       String
+  date              String
+  attendance_status Boolean
+  actual            Int
+  present           Int
+  absent            Int
+  organisationId    Int
+  organisation      organisation @relation(fields: [organisationId], references: [id], map: "Staff_organisationId_fkey")
+
+  @@index([organisationId], map: "Staff_organisationId_fkey")
+}
+
+model staffattendance {
+  id                Int          @id @default(autoincrement())
+  staff_id          String
+  staff_name        String
+  subjectName       String
+  date              String
+  attendance_status Boolean
+  actual            Int
+  present           Int
+  absent            Int
+  organisationId    Int
+  organisation      organisation @relation(fields: [organisationId], references: [id], map: "StaffAttendance_organisationId_fkey")
+
+  @@index([organisationId], map: "StaffAttendance_organisationId_fkey")
+}
+
+model subject {
+  id             Int          @id @default(autoincrement())
+  name           String
+  date           String
+  actual         Int
+  present        Int
+  absent         Int
+  programName    String
+  semesterName   String
+  schoolName     String
+  staff_id       String
+  staff_name     String
+  organisationId Int
+  programId      Int
+  semesterId     Int
+  organisation   organisation @relation(fields: [organisationId], references: [id], map: "Subject_organisationId_fkey")
+  program        program      @relation(fields: [programId], references: [id], map: "Subject_programId_fkey")
+  semester       semester     @relation(fields: [semesterId], references: [id], map: "Subject_semesterId_fkey")
+
+  @@index([organisationId], map: "Subject_organisationId_fkey")
+  @@index([programId], map: "Subject_programId_fkey")
+  @@index([semesterId], map: "Subject_semesterId_fkey")
+}
+
+model user {
+  id          Int      @id @default(autoincrement())
+  name        String
+  email       String   @unique(map: "User_email_key")
+  password    String
+  firstLogin  Boolean  @default(true)
+  role        String
+  status      String   @default("active")
+  designation String
+  mobile      String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
