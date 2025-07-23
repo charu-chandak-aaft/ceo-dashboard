@@ -65,7 +65,7 @@ export default function HeaderBar({profile}) {
         </div> */}
 
         {/* Country Flag */}
-        <div className="bg-[#1F2A40] p-1.5 rounded-md cursor-pointer">
+        <div className="bg-[#1F2A40] p-1.5 rounded-md">
           <Image
             src="/logos/indianflag.jpg"
             alt="India-Flag"
@@ -76,7 +76,7 @@ export default function HeaderBar({profile}) {
         </div>
 
         {/* User Avatar */}
-        <div className="w-9 h-9 rounded-full overflow-hidden cursor-pointer">
+        <div className="w-9 h-9 rounded-full overflow-hidden">
           <Image
             src="/logos/profile.jpg"
             alt="User Avatar"

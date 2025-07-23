@@ -92,7 +92,7 @@ function AttendancePage() {
           title="Program Attendance Summary"
           headers={tableHeaders}
           data={attendanceData}
-          height="340px"
+          height="65vh"
         >
           <thead className="text-sm font-medium bg-[#EFEFF4] sticky top-[-1px] z-10">
             <tr className="text-left">
