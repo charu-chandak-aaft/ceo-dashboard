@@ -53,7 +53,7 @@ export const setCookie = (name, value, days) => {
 // setCookie("username", "JohnDoe", 7); // Sets a cookie named "username" with value "JohnDoe" that expires in 7 days
 
 export function getCookie(cname) {
-  let name = cname + "=";
+  let name = cname;
   let decodedCookie = decodeURIComponent(document.cookie);
   let ca = decodedCookie.split(';');
   for (let i = 0; i < ca.length; i++) {
@@ -67,8 +67,8 @@ export function getCookie(cname) {
   }
   return "";
 }
-export const deleteCookie = (name) => {
-  document.cookie = `${name}=; Max-Age=-99999999;`; // Set a negative Max-Age to delete the cookie
+export const deleteCookie = (name, path = '/') => {
+  document.cookie = `${name}=; Path=${path}; Expires=Thu, 01 Jan 1970 00:00:00 UTC; SameSite=Lax;`;
 };
 // export const createAuthData = (authData) => {
 //   // console.log('authd data', authData, 'tups ', type, 'orgname ', orgName);

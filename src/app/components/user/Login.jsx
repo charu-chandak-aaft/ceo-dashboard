@@ -27,16 +27,16 @@ export default function LoginPage() {
       </span>
     ) : null;
 
-    const handleFrmSubmit = useCallback(async (payload) => {
-      const result = await postData(payload);
-      if (result?.success) {
-        // console.log("login data", result);
-        setCookie('token', result?.token);
-        setProfileDetails(result?.user);
-        router.push('/user/Dashboard'); // Use replace to prevent back navigation to login
-      }
-    }, [postData, router, setProfileDetails]);
-    
+  const handleFrmSubmit = useCallback(async (payload) => {
+    const result = await postData(payload);
+    if (result?.success) {
+      // console.log("login data", result);
+      // setCookie('token', result?.token);
+      setProfileDetails(result?.user);
+      router.push('/user/Dashboard');
+    }
+  }, [postData, router, setProfileDetails]);
+
 
   return (
     <div className="bg-[#f9f9f9] flex items-center justify-center">
@@ -45,7 +45,6 @@ export default function LoginPage() {
           <h1 className="text-2xl font-black mx-w-sm">
             Welcome to the AAFT Common Dashboard
           </h1>
-          {/* <p className="mt-6 text-[10px]">One tool for your whole team needs</p> */}
           <p className="mt-6 text-[14px] font-medium"> Monitoring your Dashboards Anytime. Easier & Effective than Before </p>
         </div>
 
@@ -53,10 +52,6 @@ export default function LoginPage() {
           <h3 className="text-center text-gray-400 uppercase text-xs mb-4">
             Just Login First
           </h3>
-          {/* <h2 className="text-center text-xl font-bold mb-6 text-black">
-            Monitoring your Dashboards Anytime.
-            <br /> Easier & Effective than Before
-          </h2> */}
 
           <form className="space-y-4" onSubmit={handleSubmit(handleFrmSubmit)}>
             <div className="text-sm pb-3">

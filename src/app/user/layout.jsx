@@ -7,6 +7,7 @@ import Link from 'next/link';
 import { Inter } from 'next/font/google';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import { deleteCookie } from '@/utils/helper';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,6 +23,7 @@ export default function UserLayout({ children }) {
         });
         localStorage.clear();
         sessionStorage.clear();
+        fetch('/api/auth/logout').catch(() => {});
         router.push('/');
     };
 

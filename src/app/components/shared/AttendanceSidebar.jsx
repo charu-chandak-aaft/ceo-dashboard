@@ -1,5 +1,6 @@
 'use client';
 
+import { deleteCookie } from '@/utils/helper';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -14,6 +15,7 @@ export default function AttendanceSidebar() {
         });
         localStorage.clear();
         sessionStorage.clear();
+        fetch('/api/auth/logout').catch(() => {});
         router.push('/');
     };
 

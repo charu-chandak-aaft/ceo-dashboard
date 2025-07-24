@@ -3,6 +3,7 @@ import bcrypt from 'bcryptjs';
 import User from '../../../../../lib/models/User';
 import connectToDatabase from '../../../../../lib/mongoose';
 import generateToken from '../../../../../lib/utils/generateToken';
+import { cookies } from 'next/headers';
 
 export async function POST(req) {
   try {
@@ -22,7 +23,13 @@ export async function POST(req) {
 
     // Create JWT
     const token = generateToken(user);
-
+     cookies().set('token', token, {
+      httpOnly: true,
+      secure: true, 
+      sameSite: 'Strict',
+      path: '/',
+      maxAge: 60*60,
+    });
     return NextResponse.json({
       message: 'Login successful',
       success: true,
