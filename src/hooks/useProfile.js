@@ -1,5 +1,5 @@
 import { getCookie } from '@/utils/helper';
-import { cookies } from 'next/headers';
+// import { cookies } from 'next/headers';
 import { useState, useEffect } from 'react';
 
 const useProfile = () => {
@@ -29,8 +29,8 @@ const useProfile = () => {
   };
 
   useEffect(() => {
-    // if(getCookie('token')){
-    if(cookies().get('token')?.value){
+    if(getCookie('token')){
+    // if(cookies().get('token')?.value){
         fetchProfile();
     }else{
         setLoading(false);
