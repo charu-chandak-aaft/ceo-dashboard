@@ -1,6 +1,7 @@
 'use client';
 
 import { deleteCookie } from '@/utils/helper';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
@@ -66,8 +67,9 @@ export default function AttendanceSidebar() {
         {/* <div className="flex items-center gap-2 mb-2 cursor-pointer hover:text-black">
           <span>🌐</span> English
         </div> */}
-        <button className="flex items-center gap-2 text-red-500 hover:underline" onClick={handleLogout}>
-          <span>🚪</span> Logout
+        <button className="flex items-center text-red-500 hover:underline" onClick={handleLogout}>
+          {/* <span>🚪</span> Logout */}
+          <Image src="/logos/logout_Icon.png" width={40} height={40} alt="logout" />LogOut
         </button>
       </div>
     </aside>

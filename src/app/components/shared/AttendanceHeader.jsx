@@ -40,9 +40,9 @@ export default function AttendanceHeader() {
           alt="User Avatar"
           className="w-9 h-9 rounded-full"
         />
-        <span className="text-gray-300 text-xs font-semibold hover:text-red-400">
+        {/* <span className="text-gray-300 text-xs font-semibold hover:text-red-400">
           Logout
-        </span>
+        </span> */}
       </div>
     </header>
   );

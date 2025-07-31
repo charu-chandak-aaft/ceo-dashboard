@@ -155,17 +155,17 @@ function StaffProductivitySummary() {
                                                 >
                                                     {item.value.toString().padStart(2, "0")}
                                                 </div>
-                                                <p className="text-sm mt-2">{item.label}</p>
+                                                <p className="text-sm mt-2 text-black">{item.label}</p>
                                             </div>
                                         ));
                                     })()}
                                 </div>
 
                                 <div>
-                                    <p className="text-2xl font-bold">
+                                    <p className="text-2xl font-bold text-black">
                                         {calculateAttendance(selectedProgram).percentage}%
                                     </p>
-                                    <p className="text-sm text-gray-500">% of Attendance</p>
+                                    <p className="text-sm text-gray-500 text-black">% of Attendance</p>
                                 </div>
                             </>
                         ) : (
