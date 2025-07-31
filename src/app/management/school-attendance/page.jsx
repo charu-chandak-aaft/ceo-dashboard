@@ -16,18 +16,57 @@ function AttendancePage() {
     yesterday.setDate(yesterday.getDate() - 1);
     return yesterday;
   });
-  // const [selectedDate, setSelectedDate] = useState(() => {
-  //   return new Date('2025-05-14');
-  // });
 
-  const fetchAttendance = async (date) => {
+  // ✅ Only for page load fallback logic
+  const fetchAttendanceWithFallback = async (initialDate) => {
+    setLoading(true);
+    let currentDate = new Date(initialDate);
+    const maxDaysBack = 15;
+    let tries = 0;
+
+    while (tries < maxDaysBack) {
+      try {
+        const response = await fetch(`/api/school-attendance`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            date: format(currentDate, 'dd-MMM-yyyy'),
+            organisationId: '67f4172c7d0948b743254577',
+          }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok && Array.isArray(data.res) && data.res.length > 0) {
+          setAttendanceData(data.res);
+          setSelectedDate(new Date(currentDate)); // ✅ Update date shown in calendar
+          sessionStorage.setItem('initialDate', currentDate);
+          break;
+        } else {
+          currentDate.setDate(currentDate.getDate() - 1);
+          tries++;
+        }
+      } catch (error) {
+        console.error('Fetch Error:', error);
+        setAttendanceData([]);
+        break;
+      }
+    }
+
+    if (tries === maxDaysBack) {
+      setAttendanceData([]);
+    }
+
+    setLoading(false);
+  };
+
+  // ✅ For calendar-selected date only (no fallback)
+  const fetchAttendanceForExactDate = async (date) => {
     setLoading(true);
     try {
       const response = await fetch(`/api/school-attendance`, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           date: format(date, 'dd-MMM-yyyy'),
           organisationId: '67f4172c7d0948b743254577',
@@ -36,11 +75,10 @@ function AttendancePage() {
 
       const data = await response.json();
 
-      if (response.ok) {
+      if (response.ok && Array.isArray(data.res) && data.res.length > 0) {
         setAttendanceData(data.res);
       } else {
-        console.error('Error:', data.message);
-        setAttendanceData([]);
+        setAttendanceData([]); // ❌ No fallback here
       }
     } catch (error) {
       console.error('Fetch Error:', error);
@@ -50,11 +88,13 @@ function AttendancePage() {
     }
   };
 
+  // 📅 When user selects a date manually
   const handleChange = (date) => {
-    // console.log('date', date);
-    sessionStorage.setItem('initialDate', date);
     setSelectedDate(date);
-  }
+    sessionStorage.setItem('initialDate', date);
+    fetchAttendanceForExactDate(date); // ⬅️ Only fetch this exact date
+  };
+
   const tableHeaders = [
     { label: 'School Name', key: 'name' },
     { label: 'Total Actual', key: 'total_actual' },
@@ -63,9 +103,11 @@ function AttendancePage() {
     { label: 'Attendance %', key: 'attendance_percentage' },
     { label: 'View', key: 'view' },
   ];
+
+  // 🚀 On first mount only (initial fallback)
   useEffect(() => {
-    fetchAttendance(selectedDate);
-  }, [selectedDate]);
+    fetchAttendanceWithFallback(selectedDate);
+  }, []);
 
   return (
     <div className='bg-white rounded-xl p-5'>
@@ -74,7 +116,6 @@ function AttendancePage() {
         <div className="relative">
           <DatePicker
             selected={selectedDate}
-            // onChange={(date) => setSelectedDate(date)}
             onChange={(date) => handleChange(date)}
             dateFormat="dd/MM/yyyy"
             className="w-30 px-4 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500 z-20"
@@ -104,7 +145,7 @@ function AttendancePage() {
           <tbody className="text-sm">
             {attendanceData.map((program, index) => {
               let attendancePercentage = ((program.total_present / program.total_actual) * 100).toFixed(2);
-              attendancePercentage = isNaN(attendancePercentage)? 0 : attendancePercentage;
+              attendancePercentage = isNaN(attendancePercentage) ? 0 : attendancePercentage;
               return (
                 <tr key={index} className="border border-gray-100 bg-white hover:bg-[#efeded]">
                   <td className="border border-gray-100 px-4 py-2 font-medium">{program.name}</td>
@@ -136,4 +177,5 @@ function AttendancePage() {
     </div>
   );
 }
+
 export default withAuth(AttendancePage);
