@@ -105,7 +105,7 @@ function StaffProductivitySummary() {
                                         <span className="text-sm text-black">{program.name}</span>
                                         <button
                                             onClick={() => setSelectedProgram(program)}
-                                            className={`px-4 py-1 rounded-full text-sm ${selectedProgram?.name === program.name
+                                            className={`px-4 py-1 rounded-full text-sm cursor-pointer ${selectedProgram?.name === program.name
                                                     ? "bg-purple-600 text-white"
                                                     : "border border-purple-600 text-purple-600"
                                                 }`}
@@ -123,8 +123,8 @@ function StaffProductivitySummary() {
                         {selectedProgram ? (
                             <>
                                 <div className="mb-4">
-                                    <span className="text-lg font-semibold">{selectedProgram.programName} - </span>
-                                    <span className="text-sm underline"> {selectedProgram.name}</span>
+                                    <span className="text-lg font-semibold text-black">{selectedProgram.programName} - </span>
+                                    <span className="text-sm underline text-black"> {selectedProgram.name}</span>
                                 </div>
 
                                 <div className="flex justify-center gap-4 md:gap-6 my-6 flex-wrap">
