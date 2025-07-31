@@ -163,7 +163,7 @@ function StaffProductivitySummary() {
 
                                 <div>
                                     <p className="text-2xl font-bold text-black">
-                                        {calculateAttendance(selectedProgram).percentage}%
+                                        {calculateAttendance(selectedProgram).percentage}
                                     </p>
                                     <p className="text-sm text-gray-500 text-black">% of Attendance</p>
                                 </div>
