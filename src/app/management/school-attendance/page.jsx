@@ -17,6 +17,8 @@ function AttendancePage() {
     return yesterday;
   });
 
+   const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
   // ✅ Only for page load fallback logic
   const fetchAttendanceWithFallback = async (initialDate) => {
     setLoading(true);
@@ -120,7 +122,8 @@ function AttendancePage() {
             dateFormat="dd/MM/yyyy"
             className="w-30 px-4 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500 z-20"
             popperPlacement="bottom-end"
-            maxDate={new Date()} // Disable future dates
+            maxDate={yesterday} // Disable future dates
+            filterDate={(date) => date < new Date()}
           />
         </div>
       </div>

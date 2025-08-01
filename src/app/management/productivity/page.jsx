@@ -84,7 +84,9 @@ function FacultyProductivityPage() {
     { label: 'Productivity %', key: 'productivity_percentage' },
     { label: 'View', key: 'view' },
   ];
-
+  
+const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
   useEffect(() => {
     fetchAttendance(selectedDate);
   }, [selectedDate]);
@@ -108,7 +110,8 @@ function FacultyProductivityPage() {
             dateFormat="dd/MM/yyyy"
             className="w-30 px-1 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500"
             popperPlacement="bottom-end"
-            maxDate={new Date()}
+            maxDate={yesterday} // Disable future dates
+            filterDate={(date) => date < new Date()}
           />
         </div>
       </div>

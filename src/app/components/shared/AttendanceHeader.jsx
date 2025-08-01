@@ -34,7 +34,7 @@ export default function AttendanceHeader() {
         </div> */}
       </div>
 
-      <div className="flex items-center cursor-pointer gap-2">
+      <div className="flex items-center gap-2">
         <img
           src="/logos/profile.jpg"
           alt="User Avatar"

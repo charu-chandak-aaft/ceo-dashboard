@@ -30,6 +30,8 @@ function ProgramPage() {
   const [selectedDate, setSelectedDate] = useState(() => {
     return getSessiondate() || new Date(new Date().setDate(new Date().getDate() - 1));
   });
+   const yesterday = new Date();
+  yesterday.setDate(yesterday.getDate() - 1);
 
   const school = params.program;
   const formattedSchoolName = school ? decodeURIComponent(school).replace(/-/g, " ") : '';
@@ -142,7 +144,8 @@ function ProgramPage() {
           dateFormat="dd/MM/yyyy"
           className="w-30 px-4 py-1 text-center rounded-full bg-[#F5F5F7] text-gray-700 text-sm border-0 focus:ring-2 focus:ring-violet-500"
           popperPlacement="bottom-end"
-          maxDate={new Date()}
+          maxDate={yesterday} // Disable future dates
+          filterDate={(date) => date < new Date()}
         />
       </div>
 
