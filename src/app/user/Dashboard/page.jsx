@@ -72,30 +72,30 @@ const Dashboard = () => {
                   </Link>
                 </div>
                 <Link href={link} target="_blank" rel="noopener noreferrer">
-                <div className="absolute bottom-[-1px] right-[-1px] cursor-pointer">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="26"
-                    height="26"
-                    viewBox="0 0 36 36"
-                  >
-                    <g transform="translate(-627.614 -560.614)">
-                      <circle
-                        cx="18"
-                        cy="18"
-                        r="18"
-                        transform="translate(627.614 560.614)"
-                        fill="#0b9afc"
-                        opacity="0.26"
-                      />
-                      <path
-                        d="M.38,12.715a1.317,1.317,0,0,1,0-1.852L8.554,2.62H3.9A1.31,1.31,0,0,1,3.9,0h7.793a1.281,1.281,0,0,1,.629.164l.008,0,.016.009.016.01.008,0,.022.014h0a1.312,1.312,0,0,1,.572.839v0l.005.029v0l0,.026v.007l0,.024v.008l0,.023v.01c0,.008,0,.016,0,.024v.008c0,.009,0,.017,0,.026v.007c0,.01,0,.019,0,.029s0,0,0,0,0,.022,0,.033h0V9.17a1.3,1.3,0,1,1-2.6,0v-4.7L2.217,12.715a1.292,1.292,0,0,1-1.836,0Z"
-                        transform="translate(639.611 571.413)"
-                        fill="#0b9afc"
-                      />
-                    </g>
-                  </svg>
-                </div>
+                  <div className="absolute bottom-[-1px] right-[-1px] cursor-pointer">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="26"
+                      height="26"
+                      viewBox="0 0 36 36"
+                    >
+                      <g transform="translate(-627.614 -560.614)">
+                        <circle
+                          cx="18"
+                          cy="18"
+                          r="18"
+                          transform="translate(627.614 560.614)"
+                          fill="#0b9afc"
+                          opacity="0.26"
+                        />
+                        <path
+                          d="M.38,12.715a1.317,1.317,0,0,1,0-1.852L8.554,2.62H3.9A1.31,1.31,0,0,1,3.9,0h7.793a1.281,1.281,0,0,1,.629.164l.008,0,.016.009.016.01.008,0,.022.014h0a1.312,1.312,0,0,1,.572.839v0l.005.029v0l0,.026v.007l0,.024v.008l0,.023v.01c0,.008,0,.016,0,.024v.008c0,.009,0,.017,0,.026v.007c0,.01,0,.019,0,.029s0,0,0,0,0,.022,0,.033h0V9.17a1.3,1.3,0,1,1-2.6,0v-4.7L2.217,12.715a1.292,1.292,0,0,1-1.836,0Z"
+                          transform="translate(639.611 571.413)"
+                          fill="#0b9afc"
+                        />
+                      </g>
+                    </svg>
+                  </div>
                 </Link>
               </div>
             );
@@ -104,11 +104,27 @@ const Dashboard = () => {
 
         {/* Right Side Profile & Goal */}
         <div className="p-6 text-center relative flex items-center flex-col top-0">
-          {/* <div className="bg-red-500 p-6 rounded-lg text-center">
-            <h3 className="text-lg text-white">Marketing goal for the past year</h3>
-            <p className="text-4xl font-bold text-white">$4,520.00</p>
-            <p className="text-sm text-white">You reached 68% of your goal</p>
-          </div> */}
+          <div className="bg-red-500 p-4 rounded-lg text-center mb-8">
+            <h3 className="text-lg text-white font-bold pb-2">Report's Links</h3>
+            {/* <p className="text-4xl font-bold text-white">$4,520.00</p>
+            <p className="text-sm text-white">You reached 68% of your goal</p> */}
+            <div className="space-y-4 text-center">
+              {/* <a
+                href="/files/AAFT-Admissions-Dashboard.pbix"
+                download
+                className="text-sm text-white hover:underline font-semibold block"
+              >
+               1. Admission Dashboard Report
+              </a> */}
+              <a
+                href="/files/AAFT-Billing-Dashboard.pbix"
+                download
+                className="text-sm text-white hover:underline font-semibold block"
+              >
+                Billing Dashboard Report
+              </a>
+            </div>
+          </div>
 
           <div className="bg-gray-800 p-12 rounded-lg text-center relative flex items-center justify-center flex-col mt-1">
             <div className="absolute -top-8 p-2 rounded-lg shadow-md mb-4">

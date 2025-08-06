@@ -32,7 +32,8 @@ function SubjectAttendancePage() {
   const program = params.semester;
   const semester = params.subject;
   const formattedProgramName = program ? decodeURIComponent(program).replace(/-/g, " ") : '';
-  const formattedSemesterName = semester ? decodeURIComponent(semester).replace(/-/g, " ") : '';
+  // const formattedSemesterName = semester ? decodeURIComponent(semester).replace(/-/g, " ") : '';
+   const formattedSemesterName = semester ? decodeURIComponent(semester) : '';
   const formattedSchoolName = school ? decodeURIComponent(school).replace(/-/g, " ") : '';
   // console.log("school name", formattedProgramName)
   const fetchAttendance = async (date, formattedSchoolName, formattedProgramName) => {
@@ -49,7 +50,7 @@ function SubjectAttendancePage() {
           organisationId: '67f4172c7d0948b743254577',
           schoolName: formattedSchoolName,
           programName: formattedProgramName,
-          semesterName: semester
+          semesterName: formattedSemesterName,
         }),
       });
 

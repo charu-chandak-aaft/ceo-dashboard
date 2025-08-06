@@ -138,7 +138,7 @@ function SemesterAttendancePage() {
                     <span className="bg-orange-100 text-orange-600 px-3 py-1 rounded-full font-medium">{attendancePercentage}%</span>
                   </td>
                   <td className="border border-gray-100 px-4 py-2 font-bold text-center">
-                    <Link href={`/management/school-attendance/${school}/${encodeURIComponent(semester?.replace(/\s+/g, "-"))}/${encodeURIComponent(program?.name?.replace(/\s+/g, "-"))}`}>
+                    <Link href={`/management/school-attendance/${school}/${encodeURIComponent(semester?.replace(/\s+/g, "-"))}/${encodeURIComponent(program?.name)}`}>
                       <button className="bg-violet-600 hover:bg-violet-700 text-white px-4 py-1 rounded-full text-xs font-medium transition cursor-pointer">
                         View
                       </button>
