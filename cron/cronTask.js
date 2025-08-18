@@ -1,18 +1,15 @@
-// cronTask.js
-import cron from 'node-cron';
-import axios from 'axios';
+const cron = require("node-cron");
+const fetch = require("node-fetch");
 
-console.log('⏳ Cron service started...');
+console.log("⏳ Cron service started...");
 
-// Schedule a task to run at 5:00 AM daily
-cron.schedule('0 5 * * *', async () => {
-  console.log(`🚀 Running attendance sync at ${new Date().toLocaleString()}`);
-
+cron.schedule("0 5 * * *", async () => {
+  console.log("🚀 Running cron job at 5 AM...");
   try {
-    const response = await axios.get('/api/attendance-sync');
-
-    console.log('✅ Sync success:', response.data);
+    const response = await fetch("http://br.aaft.com/api/attendance-sync");
+    const data = await response.json();
+    console.log("✅ API Response:", data);
   } catch (error) {
-    console.error('❌ Sync failed:', error.message);
+    console.error("❌ API call failed:", error);
   }
 });
