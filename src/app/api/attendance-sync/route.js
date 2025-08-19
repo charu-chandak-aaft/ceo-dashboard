@@ -246,7 +246,7 @@ async function storeParsedAttendance(rows) {
 
     // 🔸 Aggregate Subject Entries with attendance_status true
     const subjectKey = `${organisationId}-${date}-${subjectName}-${semesterName}`;
-    if (attendance_status !== "Attendance not taken") {
+    if (attendance_status !== false) {
       if (!subjectAggregation[subjectKey]) {
         subjectAggregation[subjectKey] = {
           organisationId,
