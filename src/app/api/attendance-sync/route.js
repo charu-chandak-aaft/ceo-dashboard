@@ -236,7 +236,7 @@ async function storeParsedAttendance(rows) {
           absent,
           staff_id,
           staff_name,
-          attendance_status: attendance_status === " " ? false : true,
+          attendance_status: attendance_status === "" ? false : true,
         });
         staffGrouped[staffKey] = true;
       } catch (err) {
